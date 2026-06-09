@@ -1,5 +1,29 @@
-cat > .gitignore <<EOF
+# Vim
 *.swp
+*.swo
+
+# Temporary files
 *.tmp
+
+# Logs
+*.log
+
+# macOS
 .DS_Store
-EOF
+
+# Windows
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Ansible
+*.retry

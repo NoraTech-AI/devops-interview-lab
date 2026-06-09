@@ -1,6 +1,20 @@
 # Kubernetes Deployment Lab
 
-This project demonstrates a complete Kubernetes deployment lifecycle using k3s.
+A hands-on Kubernetes lab demonstrating:
+
+- Namespace management
+- Deployments
+- ReplicaSets
+- Services
+- Scaling
+- Rolling Updates
+- Rollbacks
+
+Environment:
+- Kubernetes: k3s
+- OS: Ubuntu
+- Container Runtime: containerd
+
 
 ## Features
 

@@ -1,19 +1,19 @@
-# Kubernetes Deployment Lab This project demonstrates a full Kubernetes deployment lifecycle using k3s. Features
+# Kubernetes Deployment Lab
 
-Namespace creation
+This project demonstrates a complete Kubernetes deployment lifecycle using k3s.
 
-Nginx Deployment with replicas
+## Features
 
-Service exposure via NodePort
+- Namespace creation
+- Nginx Deployment with multiple replicas
+- Service exposure using NodePort
+- Scaling Pods
+- Rolling Updates
+- Rollback to previous revision
 
-Scaling Pods
+## Architecture
 
-Rolling Updates
-
-Rollback to previous revision
-
-Architecture
-
+```text
 Deployment
     │
     ▼
@@ -24,35 +24,99 @@ Pods
     │
     ▼
 Service (NodePort)
+```
 
-Files
+## Project Structure
 
-manifests/namespace.yaml – namespace definition
+```text
+01-kubernetes-deployment/
+├── manifests/
+│   ├── namespace.yaml
+│   ├── deployment.yaml
+│   └── service.yaml
+├── screenshots/
+└── README.md
+```
 
-manifests/deployment.yaml – nginx deployment
+## Create Namespace
 
-manifests/service.yaml – NodePort service
+```bash
+kubectl apply -f manifests/namespace.yaml
+```
 
-Apply resources
+## Deploy Nginx
 
-kubectl apply -f manifests/
-
-Verify
-
-kubectl get all -n devops-lab
-
-Access Nginx
-
-curl http://127.0.0.1:<NODEPORT>
-
-Scale Deployment
-
-kubectl scale deployment nginx-deployment --replicas=5 -n devops-lab
-
-Rolling Update
-
+```bash
 kubectl apply -f manifests/deployment.yaml
+```
 
-Rollback
+## Create Service
 
-kubectl rollout undo deployment nginx-deployment -n devops-lab
+```bash
+kubectl apply -f manifests/service.yaml
+```
+
+## Verify Resources
+
+```bash
+kubectl get all -n devops-lab
+```
+
+## Access Application
+
+```bash
+curl http://127.0.0.1:<NODEPORT>
+```
+
+## Scale Deployment
+
+Scale to 5 replicas:
+
+```bash
+kubectl scale deployment nginx-deployment \
+  --replicas=5 \
+  -n devops-lab
+```
+
+## Rolling Update
+
+Update image version in `deployment.yaml` and apply:
+
+```bash
+kubectl apply -f manifests/deployment.yaml
+```
+
+Check rollout status:
+
+```bash
+kubectl rollout status deployment nginx-deployment \
+  -n devops-lab
+```
+
+## Rollback
+
+View revision history:
+
+```bash
+kubectl rollout history deployment nginx-deployment \
+  -n devops-lab
+```
+
+Rollback to previous version:
+
+```bash
+kubectl rollout undo deployment nginx-deployment \
+  -n devops-lab
+```
+
+## Learned Concepts
+
+- Kubernetes Namespace
+- Deployment
+- ReplicaSet
+- Pod Lifecycle
+- Service
+- NodePort
+- Scaling
+- Rolling Update
+- Rollback

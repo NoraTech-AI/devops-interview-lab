@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+
+metadata:
+  name: path-routing-ingress
+  namespace: ingress-lab
+
+
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: nginx.local
+    http:
+      paths: 
+      - path: /app1
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-app1-service
+            port:
+              number: 80
+     
+      - path: /app2
+        pathType: Prefix
+        backend: 
+          service: 
+            name: nginx-app2-service
+            port:
+              number: 80

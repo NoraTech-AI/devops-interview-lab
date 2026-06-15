@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-generator
+  namespace: logging-basic
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: log-generator
+
+  template:
+    metadata:
+      labels:
+        app: log-generator
+
+    spec:
+      containers:
+      - name: app
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            while true; do
+              echo "$(date) INFO request processed";
+              echo "$(date) ERROR something failed";
+              sleep 2;
+            done

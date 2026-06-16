@@ -1,4 +1,4 @@
-# Project 09 - Prometheus Monitoring with Nginx Exporter
+#  Prometheus Monitoring with Nginx Exporter
 
 ## Objective
 
@@ -387,4 +387,3 @@ Prometheus
 PromQL Queries
 ```
 
-Project Status: Completed

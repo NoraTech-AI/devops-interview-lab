@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: alert-config
+  namespace: monitoring-lab
+
+data:
+  alert.rules.yml: |
+    groups:
+    - name: basic-alerts
+      rules:
+
+      - alert: NginxExporterDown
+        expr: up{job="nginx-exporter"} == 0
+        for: 1m
+
+        labels:
+          severity: critical
+
+        annotations:
+          summary: "Nginx Exporter Down"
+          description: "Nginx exporter has been unavailable for more than 1 minute."
